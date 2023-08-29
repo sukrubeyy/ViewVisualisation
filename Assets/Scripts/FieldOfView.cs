@@ -23,7 +23,7 @@ public class FieldOfView : MonoBehaviour
     void Start()
     {
         mesh = new Mesh();
-        mesh.name = "Sukonun Meshi";
+        mesh.name = "MeshOfSukruBeyy";
         meshFilter.mesh = mesh;
         StartCoroutine(FindAllVisibleTargetWithTime(.2f));
     }
@@ -80,7 +80,6 @@ public class FieldOfView : MonoBehaviour
         mesh.triangles = triangle;
         mesh.RecalculateNormals();
     }
-
     ViewInfo ViewCast(float globalAngle)
     {
         Vector3 direction = DirectionFromAngle(globalAngle, true);
@@ -92,7 +91,6 @@ public class FieldOfView : MonoBehaviour
         else
             return new ViewInfo(transform.position + direction * vRadius, vRadius, globalAngle, false);
     }
-
     EdgeInfo FindEdge(ViewInfo minView, ViewInfo maxView)
     {
         float minAngle = minView.angle;
@@ -117,7 +115,6 @@ public class FieldOfView : MonoBehaviour
         }
         return new EdgeInfo(minPoint, maxPoint);
     }
-
     public Vector3 DirectionFromAngle(float angleDegrees, bool globalAngle)
     {
         if (!globalAngle)
@@ -126,7 +123,6 @@ public class FieldOfView : MonoBehaviour
         }
         return new Vector3(Mathf.Sin(angleDegrees * Mathf.Deg2Rad), 0, Mathf.Cos(angleDegrees * Mathf.Deg2Rad));
     }
-
     IEnumerator FindAllVisibleTargetWithTime(float time)
     {
         while (true)
@@ -135,7 +131,6 @@ public class FieldOfView : MonoBehaviour
             FindVisibleTargets();
         }
     }
-
     private void FindVisibleTargets()
     {
         visibleTargets.Clear();
@@ -143,8 +138,6 @@ public class FieldOfView : MonoBehaviour
         for (int i = 0; i < targetsColliders.Length; i++)
         {
             Transform target = targetsColliders[i].transform;
-            //Sadece direction aldığı için bize vector3'ün büyüklüğü yani magnitude lazım değil bu yüzden
-            //normalized ediyoruz.
             Vector3 directionTarget = (target.position - transform.position).normalized;
             if (Vector3.Angle(transform.forward, directionTarget) < vAngle / 2)
             {
@@ -158,33 +151,5 @@ public class FieldOfView : MonoBehaviour
             }
 
         }
-    }
-}
-
-public struct ViewInfo
-{
-    public Vector3 point;
-    public bool hit;
-    public float distance;
-    public float angle;
-
-    public ViewInfo(Vector3 _point, float _distance, float _angle, bool _hit)
-    {
-        point = _point;
-        distance = _distance;
-        angle = _angle;
-        hit = _hit;
-    }
-}
-
-public struct EdgeInfo
-{
-    public Vector3 pointA;
-    public Vector3 pointB;
-
-    public EdgeInfo(Vector3 _a, Vector3 _b)
-    {
-        pointA = _a;
-        pointB = _b;
     }
 }

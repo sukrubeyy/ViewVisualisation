@@ -349,18 +349,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vRadius: 40
   vAngle: 90
+  meshResolution: 3
+  edgeDstThreshold: 0.5
+  edgeRIterations: 4
+  maskCutAway: 0.13
   obsMask:
     serializedVersion: 2
     m_Bits: 64
   targetMask:
     serializedVersion: 2
     m_Bits: 128
-  visibleTargets: []
-  meshResolution: 3
   meshFilter: {fileID: 923577811}
-  edgeDstThreshold: 0.5
-  edgeRIterations: 4
-  maskCutAway: 0.13
+  visibleTargets: []
 --- !u!114 &43333199
 MonoBehaviour:
   m_ObjectHideFlags: 0
