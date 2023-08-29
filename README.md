@@ -195,7 +195,7 @@ public struct ViewInfo
 <li>
   <pre>
     <code>
-      using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
